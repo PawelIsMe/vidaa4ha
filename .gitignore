@@ -1,0 +1,19 @@
+# Python VE
+.venv/
+
+# Python cache
+__pycache__/
+app/__pycache__/
+*.py[cod]
+
+# Config files of IDE
+.idea/
+.vscode/
+
+# Other files
+.git/
+config.yaml
+tokens.json
+certs/
+*.pem
+*.key
