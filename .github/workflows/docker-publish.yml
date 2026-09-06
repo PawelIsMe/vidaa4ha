@@ -6,9 +6,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Docker image version (e.g. 1.0.0)"
+        description: "Docker image version (e.g. 1.1.0)"
         required: true
         type: string
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -32,9 +33,11 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository }}
+          flavor: |
+            latest=true
           tags: |
-            ${{ github.event_name == 'release' && format('type=semver,pattern={{version}}') || format('type=raw,value={0}', inputs.version) }}
-            type=raw,value=latest
+            type=semver,pattern={{version}},value=${{ github.event_name == 'workflow_dispatch' && inputs.version || '' }}
+            type=raw,value=${{ inputs.version }},enable=${{ github.event_name == 'workflow_dispatch' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
