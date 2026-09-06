@@ -12,8 +12,8 @@ Control your VIDAA OS TV directly from Home Assistant!
 * Lets you open any YouTube video directly on your TV.
 ## Installation
 ### Docker Compose:
-1. Create a folder **'vidaa4ha'**.
-2. Create a file named **'docker-compose.yml'** in this folder and write:
+1. Create a folder named `vidaa4ha`.
+2. Create a file named `docker-compose.yml` in this folder and write:
 ```
 services:
   vidaa4ha:
@@ -24,8 +24,8 @@ services:
       - ./config.yaml:/app/config.yaml:ro
       - ./certs:/root/.config/pyvidaa/certs:ro
 ```
-3. Create a file named **'config.yaml'** and write [this](#configuration)
-4. Create a folder named **'certs'** and add the client TLS certificates extracted from the VIDAA app. These certificates are required for communication with the TV. See the full guide [here](#obtaining-the-client-certificate) for detailed instructions on how to obtain them.
+3. Create a file named `config.yaml` and write [this](#configuration)
+4. Create a folder named `certs` and add the client TLS certificates extracted from the VIDAA app. These certificates are required for communication with the TV. See the full guide [here](#obtaining-the-client-certificate) for detailed instructions on how to obtain them.
 5. Open terminal in main folder and type:
 ```
 docker compose up -d
@@ -37,7 +37,7 @@ docker logs -f vidaa4ha
 
 
 ## Configuration
-Complete example of **'config.yaml'**:
+Complete example of `config.yaml`:
 
 ```
 mqtt:
@@ -64,10 +64,11 @@ rapidapi:
 
 ## Obtaining the client certificate
 
-Modern Vidaa TVs require **client TLS certificates** — you must have a certificate and
-private key that are built into the official Vidaa Mobile App **('vidaa_client.pem' and 'vidaa_client.key')**. For legal reasons
-**vidaa4ha does not share this certificates**, so you have to supply your own copy of them (older TVs may connect without it, but probably its required).
+Modern VIDAA TVs require **client TLS certificates** to establish a connection. You need a certificate and private key included in the official VIDAA Mobile App (`vidaa_client.pem` and `vidaa_client.key`).
 
+For legal reasons, **VIDAA4HA does not distribute these certificates**, so you must provide your own copies. Some older TV models may work without them, but they are required for most modern VIDAA TVs.
+
+For instructions on obtaining the required VIDAA client certificates, see the [VIDAA protocol analysis by Warren Rees](https://github.com/warrenrees/pyvidaa/blob/master/VIDAA_PROTOCOL_ANALYSIS.md).
 
 ## Gallery
 ### Homeassistant entities:
