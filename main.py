@@ -106,7 +106,7 @@ def main():
                 next_check = time.monotonic() + 300
 
             # To avoid overloading the processor
-            time.sleep(1)
+            # time.sleep(1)
     except KeyboardInterrupt:
         logger.info("Stopping application...")
     finally:

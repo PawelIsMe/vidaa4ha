@@ -259,6 +259,13 @@ class TVClient:
         logger.info("Youtube video uploaded successfully!")
 
     def search_browser(self, url):
+        # Needed variables update
+        self.monitor_states()
+
+        if not self.is_on:
+            self._tv.power_on()
+            time.sleep(3)
+
         # Adding number to result ID
         self.browser_result_id += 1
 
